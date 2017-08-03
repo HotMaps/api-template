@@ -1,4 +1,3 @@
-import pytest
 import json
 import requests
 import os
