@@ -14,6 +14,7 @@ Project Structure
 Folders:
 
 * `app` - Our template is here.
+* `tests` - The unit test you will do on your project.
 
 Files:
 
@@ -52,6 +53,7 @@ app/
         ├── parameters.py
         ├── resources.py
         └── schemas.py
+
 ```
 
 * `app/requirements.txt` - The list of Python (PyPi) requirements.
@@ -66,7 +68,6 @@ app/
   `topics`+`comments` modules).
 * `app/modules/common` - This regroup the features that can be used by any of those modules in order to avoid complexifying imports, it regroups schemas and final string name.  
 * `app/flask_restplus_patched` - This is the patched version of flask restplus that has been made by frol, it allows flask restplus to handle marshmallow better.
-
 ### Module Structure
 
 Once you added a module name into `config.ENABLED_MODULES`, it is required to
@@ -101,6 +102,36 @@ This example will add the namespace of the resources to the api list. You will l
 `resources.py` contains the diffrent function that will be used by your api
 
 `schemas.py` contains the different schemas (using marshmallow) that you will need in your API
+
+### Tests structure
+```
+tests/
+└── modules
+    ├── __init__.py
+    └── example
+        ├── __init__.py
+        └── resources
+            ├── __init__.py
+            ├── payload.txt
+            └── test_example_area.py
+```
+* `tests/modules` - All tests on all modules, here, you can tests some features (schemas, models, ...) on the main folder.
+
+###Tests module Structure
+```
+example
+   ├── __init__.py
+   └── resources
+       ├── __init__.py
+       ├── payload.txt
+       └── test_example_area.py
+```
+
+`resources` - Put all the operation related to the module API inside.
+
+`resources/payload.txt` contains the response that is awaited by the query, if the response differs from the payload, the test will fail.
+
+`resources/test_example_area.py` contains the concrete test that will be executed.
 
 How to run the service ?
 --------------------------------
